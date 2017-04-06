@@ -1,0 +1,10 @@
+先运用SLIC算法，对第图片进行加权系数为10的距离颜色比进行处理，从而去掉了超像素面积小于10像素的部分，进行超像素为1000的处理。可以根据需要更改参数得到想要的效果。
+输入代码：
+>> im=imread('C:\Users\Darkness\Desktop\1.jpg');
+>> [l, Am, C] = slic(im, 1000, 10, 1, 'median');
+>> imshow(drawregionboundaries(l, im, [255 255 255]))
+然后在SLIC算法的基础上，运用DBSCAN算法进行聚类，这里我们选择色差的值为5进行聚类。
+在SLIC处理之后输入程序：
+>> lc = spdbscan(l, C, Am, 5);
+>> imshow(drawregionboundaries(lc, im, [255 255 255]))
+
